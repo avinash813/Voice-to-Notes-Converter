@@ -34,14 +34,22 @@
                 </div>
               </div>
           </div>
-          <input id="text"><button id="download">Download as PDF</button>
-<script>
-  download.addEventListener('click', function() {
-    var doc = new jsPDF()
-    doc.text(10, 10, doc.splitTextToSize(text.value, 180));
-    doc.save('doc.pdf');
-  })
+          <center>
+          <b><p> Enter the Saved content:- </p></b>
+                <textarea id="copiedtext" name="copiedtext" rows="10" cols="80"> </textarea><br/>
+                <button onclick = "downloadFile()"> save File </button>
+   <script>
+    const downloadFile = () => {
+      const link = document.createElement("a");
+      const content = document.querySelector("textarea").value;
+      const file = new Blob([content], { type: 'text/plain' });
+      link.href = URL.createObjectURL(file);
+      link.download = "sample.txt";
+      link.click();
+      URL.revokeObjectURL(link.href);
+   };
 </script>
+</center>
 
       </main>
       <script src="js/languages.js"></script>
